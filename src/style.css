@@ -1,0 +1,144 @@
+/* تنسيق عام */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f7f9fc;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 700;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ترويسة الصفحة */
+header {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2),
+    transparent 70%
+  );
+  animation: rotate 10s linear infinite;
+  z-index: 0;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
+}
+
+header p {
+  font-size: 1.2rem;
+  z-index: 1;
+  position: relative;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* الأقسام */
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.about,
+.contact {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 40px;
+}
+
+.classes,
+.services {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  margin: 20px 0;
+}
+
+/* أنيميشن */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* الهوامش */
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list-group-item {
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+}
+
+.list-group-item:hover {
+  background: #f1f1f1;
+  transition: 0.3s;
+}
+
+.contact h5 {
+  font-size: 1.2rem;
+  color: #555;
+}
