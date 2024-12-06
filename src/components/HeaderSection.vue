@@ -19,7 +19,7 @@
           </a>
 
           <a @click.prevent="scrollToSection('contact')" class="nav-link"
-            >تواصل </a
+            >تواصل معنا</a
           >
           <a @click.prevent="scrollToSection('grades')" class="nav-link"
             >المراحل الدراسية</a
@@ -191,7 +191,7 @@ body {
 .nav-link:hover {
   color: #ffdd57;
 }
-.btn{
+.btn {
   padding: 10px;
 }
 /* زر القائمة الجانبية */
