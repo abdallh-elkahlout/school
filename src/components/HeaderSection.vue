@@ -19,7 +19,7 @@
           </a>
 
           <a @click.prevent="scrollToSection('contact')" class="nav-link"
-            >تواصل معنا</a
+            >تواصل </a
           >
           <a @click.prevent="scrollToSection('grades')" class="nav-link"
             >المراحل الدراسية</a
