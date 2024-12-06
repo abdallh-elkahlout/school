@@ -191,7 +191,9 @@ body {
 .nav-link:hover {
   color: #ffdd57;
 }
-
+.btn{
+  padding: 10px;
+}
 /* زر القائمة الجانبية */
 .hamburger {
   display: none;
