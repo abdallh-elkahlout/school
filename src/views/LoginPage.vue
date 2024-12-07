@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .login-page {
-  background-color: gray;
+  background-color: rgb(229, 237, 247);
 }
 
 .card {
@@ -74,5 +74,10 @@ export default {
 }
 button {
   text-transform: capitalize;
+}
+h1 {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
