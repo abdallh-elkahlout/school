@@ -3,7 +3,6 @@
     <div class="container">
       <h2 class="text-center mb-5">الخدمات</h2>
 
-      <!-- Carousel الخاص بالـ services باستخدام بطاقات -->
       <div
         id="servicesCarousel"
         class="carousel slide"
@@ -11,7 +10,6 @@
         data-bs-interval="3000"
       >
         <div class="carousel-inner">
-          <!-- تكرار العناصر داخل carousel مع عرض بطاقة واحدة في الجوال وثلاثة في الشاشات الكبيرة -->
           <div
             v-for="(serviceGroup, groupIndex) in chunkedServices"
             :key="groupIndex"
@@ -42,7 +40,7 @@
         </div>
       </div>
 
-      <!-- أزرار تحريك البطاقات أسفل السلايدر -->
+      <!-- أزرار تحريك البطاقات -->
       <div class="d-flex justify-content-center mt-4">
         <button
           class="btn btn-primary mx-2"
@@ -70,7 +68,7 @@ export default {
   name: "ServicesSlider",
   data() {
     return {
-      windowWidth: window.innerWidth, // تخزين عرض النافذة في المتغير
+      windowWidth: window.innerWidth,
       services: [
         {
           title: "مختبرات علمية",
@@ -104,8 +102,7 @@ export default {
         },
         {
           title: "الأنشطة الطلابية",
-          description:
-            "نوادي ثقافية وفنية مثل نادي القراءة، نادي الكتابة.",
+          description: "نوادي ثقافية وفنية مثل نادي القراءة، نادي الكتابة.",
           image: require("@/assets/sa.jpg"),
         },
         {
@@ -118,8 +115,7 @@ export default {
   },
   computed: {
     chunkedServices() {
-      // تقسيم الـ services إلى مجموعات من 1 في الجوال أو 3 في الشاشات الكبيرة
-      const chunkSize = this.windowWidth <= 768 ? 1 : 3; // عرض 1 بطاقة فقط في الجوال
+      const chunkSize = this.windowWidth <= 768 ? 1 : 3;
       const result = [];
       for (let i = 0; i < this.services.length; i += chunkSize) {
         result.push(this.services.slice(i, i + chunkSize));
@@ -128,11 +124,9 @@ export default {
     },
   },
   mounted() {
-    // إضافة مستمع لحدث تغيير حجم النافذة
     window.addEventListener("resize", this.handleResize);
   },
   unmounted() {
-    // إزالة مستمع الحدث عند تدمير المكون
     window.removeEventListener("resize", this.handleResize);
   },
   methods: {
@@ -144,7 +138,6 @@ export default {
 </script>
 
 <style scoped>
-/* تصميم الـ Slider باستخدام بطاقات Bootstrap */
 .services-slider {
   background-color: #f4f7fb;
   padding: 50px 0;
@@ -204,15 +197,14 @@ export default {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: #007bff;
-  width: 20px; /* زيادة الحجم */
-  height: 20px; /* زيادة الحجم */
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
 }
 
-/* تغيير حجم الأسهم داخل الأزرار عند التمرير */
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {
-  font-size: 30px; /* زيادة حجم الأيقونة */
+  font-size: 30px;
 }
 
 .carousel-control-prev:hover,
@@ -220,7 +212,6 @@ export default {
   background-color: #0056b3;
 }
 
-/* تحسين الأزرار السفلية */
 .btn-primary {
   font-size: 1.2rem;
   padding: 10px 20px;
@@ -228,47 +219,46 @@ export default {
   text-transform: uppercase;
 }
 
-/* تحسين العرض على الشاشات الصغيرة */
 @media (max-width: 768px) {
   .card-title {
-    font-size: 1.4rem; /* تصغير حجم العنوان */
+    font-size: 1.4rem;
   }
 
   .card-text {
-    font-size: 0.9rem; /* تصغير حجم النص */
+    font-size: 0.9rem;
   }
 
   .card-img-top {
-    height: 200px; /* تصغير حجم الصورة */
+    height: 200px;
   }
 
   .carousel-inner {
-    padding: 10px 0; /* تقليل المسافة حول السلايدر */
+    padding: 10px 0;
   }
 
   .carousel-item {
-    padding: 20px 0; /* تقليل المسافة حول الشريحة */
+    padding: 20px 0;
   }
 
   .col-12 {
-    padding-left: 15px; /* تقليل المسافة بين الأعمدة */
+    padding-left: 15px;
     padding-right: 15px;
   }
 
   .btn-primary {
-    font-size: 1rem; /* تصغير حجم الأزرار */
-    padding: 8px 15px; /* تقليل حجم الأزرار */
+    font-size: 1rem;
+    padding: 8px 15px;
   }
 
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-    width: 25px; /* زيادة الحجم */
+    width: 25px;
     height: 25px;
   }
 
   .carousel-control-prev-icon::before,
   .carousel-control-next-icon::before {
-    font-size: 25px; /* زيادة حجم الأيقونة */
+    font-size: 25px;
   }
 }
 </style>

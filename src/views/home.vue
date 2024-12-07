@@ -33,28 +33,24 @@ export default {
   },
   data() {
     return {
-      isVisible: false, // لتحديد ما إذا كان الزر يجب أن يظهر أم لا
+      isVisible: false,
     };
   },
   methods: {
-    // التمرير إلى أعلى الصفحة
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
-    // متابعة التمرير والتحديث بناءً على موقع الصفحة
     handleScroll() {
-      this.isVisible = window.scrollY > 2000; // يظهر الزر بعد التمرير 2000px
+      this.isVisible = window.scrollY > 2000;
     },
   },
   mounted() {
-    // تمرير الصفحة إلى الأعلى عند التحميل
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" }); // أو behavior: "auto"
-    }, 0); // إضافة مستمع للتمرير عند تحميل المكون
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0); 
     window.addEventListener("scroll", this.handleScroll);
   },
   beforeUnmount() {
-    // إزالة مستمع التمرير عندما يتم تدمير المكون
     window.removeEventListener("scroll", this.handleScroll);
   },
 };
@@ -68,35 +64,30 @@ body {
   box-sizing: border-box;
 }
 
-/* تخصيص العرض واللون العام للمؤشر */
 ::-webkit-scrollbar {
-  width: 10px; /* عرض المؤشر */
-  height: 10px; /* عرض المؤشر الأفقي (إذا كان موجودًا) */
+  width: 10px;
+  height: 10px;
 }
 
-/* تخصيص خلفية المؤشر */
 ::-webkit-scrollbar-track {
-  background: #f4f4f4; /* لون المسار */
-  border-radius: 10px; /* حواف مستديرة للمسار */
+  background: #f4f4f4;
+  border-radius: 10px;
 }
 
-/* تخصيص المقبض الخاص بالمؤشر */
 ::-webkit-scrollbar-thumb {
-  background: #007bff; /* لون المقبض */
-  border-radius: 10px; /* حواف مستديرة للمقبض */
-  border: 2px solid #f4f4f4; /* إضافة إطار حول المقبض */
+  background: #007bff; 
+  border-radius: 10px;
+  border: 2px solid #f4f4f4;
 }
 
-/* تخصيص المقبض عند التمرير أو التفاعل */
 ::-webkit-scrollbar-thumb:hover {
-  background: #0056b3; /* لون عند التمرير */
+  background: #0056b3;
 }
 
-/* لجعل المؤشر أقل وضوحًا عند التمرير */
 ::-webkit-scrollbar-thumb:active {
   background: #003d80;
 }
-/* تخصيص زر العودة للأعلى */
+
 .back-to-top {
   position: fixed;
   bottom: 30px;

@@ -3,7 +3,6 @@
     <div class="container">
       <h2 class="text-center mb-5">المراحل الدراسية</h2>
 
-      <!-- عرض قائمة الصفوف الدراسية بشكل حديث وعصري -->
       <div class="row justify-content-center">
         <div
           class="col-12 col-sm-6 col-md-4 mb-4"
@@ -61,7 +60,6 @@ export default {
 </script>
 
 <style scoped>
-/* تنسيق لقسم المراحل الدراسية */
 .grades-section {
   background-color: #f8f9fa;
   padding: 50px 0;
@@ -93,8 +91,6 @@ export default {
   padding: 30px;
 }
 
-
-/* تنسيق العرض على الشاشات الصغيرة */
 @media (max-width: 768px) {
   .card-title {
     font-size: 1.4rem;

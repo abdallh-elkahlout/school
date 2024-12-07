@@ -4,6 +4,7 @@
       <!-- العنوان الرئيسي -->
       <h2 class="main-title"><span class="gradient-text">تواصل</span> معنا</h2>
       <div class="contact-wrapper">
+        <!-- الصورة -->
         <div class="contact-image-container">
           <img
             src="@/assets/contact.png"
@@ -11,7 +12,7 @@
             class="contact-image"
           />
         </div>
-        <!-- القسم الأول: النموذج -->
+        <!-- النموذج -->
         <div class="contact-form-container">
           <form @submit.prevent="handleSubmit" class="contact-form">
             <input
@@ -70,7 +71,6 @@ export default {
 </script>
 
 <style scoped>
-/* إعدادات عامة */
 * {
   margin: 0;
   padding: 0;
@@ -93,14 +93,12 @@ export default {
   color: #333;
 }
 
-/* الحاوية لتقسيم الصورة والنموذج */
 .contact-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 50px;
 }
 
-/* القسم الأول: النموذج */
 .contact-form-container {
   width: 60%;
   padding-right: 20px;
@@ -163,7 +161,6 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* القسم الثاني: الصورة */
 .contact-image-container {
   width: 70%;
 }
@@ -178,7 +175,6 @@ export default {
   -webkit-text-fill-color: transparent;
 }
 
-/* الاستجابة للشاشات الصغيرة */
 @media (max-width: 768px) {
   .contact-wrapper {
     flex-direction: column;

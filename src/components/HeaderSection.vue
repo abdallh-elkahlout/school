@@ -1,9 +1,7 @@
 <template>
   <div>
-    <!-- شريط التنقل -->
     <header class="navbar" :class="{ scrolled: isScrolled }">
       <div class="nav-container">
-        <!-- زر القائمة الجانبية للشاشات الصغيرة -->
         <button class="hamburger" @click="toggleMenu">
           <span></span>
           <span></span>
@@ -41,7 +39,6 @@
       </div>
     </header>
 
-    <!-- القائمة الجانبية للشاشات الصغيرة -->
     <div class="side-menu" :class="{ open: isMenuOpen }">
       <a
         @click.prevent="
@@ -84,7 +81,7 @@
     </div>
 
     <!-- القسم الرئيسي -->
-    <section id="home" class="hero">
+    <section id="home" class="home">
       <div class="content">
         <h1 class="headline">مرحبًا بكم في مدرسة المستقبل</h1>
         <p class="subheadline">نوفر بيئة تعليمية شاملة لجميع المراحل</p>
@@ -131,7 +128,6 @@ export default {
 </script>
 
 <style scoped>
-/* إعدادات عامة */
 * {
   margin: 0;
   padding: 0;
@@ -141,11 +137,10 @@ export default {
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f2f3f7;
-  padding-top: 80px; /* مسافة من الأعلى لتجنب التداخل مع النافبار */
-  overflow-x: hidden; /* منع التمرير الأفقي */
+  padding-top: 80px;
+  overflow-x: hidden;
 }
 
-/* شريط التنقل */
 .navbar {
   position: fixed;
   top: 0;
@@ -176,7 +171,7 @@ body {
   font-weight: bold;
   color: white;
   text-align: center;
-  white-space: nowrap; /* منع النص من التمدد للخارج */
+  white-space: nowrap;
   overflow: hidden;
 }
 
@@ -200,7 +195,7 @@ body {
 .btn {
   padding: 10px;
 }
-/* زر القائمة الجانبية */
+
 .hamburger {
   display: none;
   background: none;
@@ -220,8 +215,6 @@ body {
   border-radius: 2px;
 }
 
-/* القائمة الجانبية */
-/* القائمة الجانبية */
 .side-menu {
   position: fixed;
   top: 0;
@@ -234,10 +227,8 @@ body {
   justify-content: center;
   align-items: center;
   transition: right 0.3s ease;
-  z-index: 1001; /* التأكد من أن القائمة تظهر في الأعلى */
+  z-index: 1001;
 }
-
-/* باقي التعديلات كما هي... */
 
 .side-menu.open {
   right: 0;
@@ -254,8 +245,7 @@ body {
   color: #ffdd57;
 }
 
-/* قسم Hero */
-.hero {
+.home {
   position: relative;
   height: 100vh;
   display: flex;
@@ -286,7 +276,7 @@ body {
 .cta-button {
   display: inline-block;
   padding: 15px 30px;
-  margin-top: 30px; /* إضافة مسافة بين الزر والعناصر أعلاه */
+  margin-top: 30px;
   background-color: #ffdd57;
   color: #333;
   font-weight: bold;
@@ -295,7 +285,7 @@ body {
   letter-spacing: 1px;
   transition: transform 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
-  position: relative; /* التأكد من أن الزر لا يخرج عن الحاوية */
+  position: relative;
 }
 
 .cta-button:hover {
@@ -303,7 +293,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* التصميم المتجاوب */
 @media (max-width: 705px) {
   .list {
     display: none;

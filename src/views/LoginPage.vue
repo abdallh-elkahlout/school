@@ -58,7 +58,6 @@ export default {
   name: "LoginPage",
   methods: {
     navigateTo(role) {
-      // يمكن تخصيص التنقل حسب نوع المستخدم
       alert(`تم اختيار الدخول كـ: ${role}`);
     },
   },
@@ -67,8 +66,7 @@ export default {
 
 <style scoped>
 .login-page {
-  background: url("https://via.placeholder.com/1920x1080") no-repeat center
-    center/cover;
+  background-color: gray;
 }
 
 .card {
