@@ -65,7 +65,7 @@
           toggleMenu();
         "
         class="menu-link"
-        >الأقسام</a
+        >الخدمات</a
       >
       <a
         @click.prevent="
@@ -75,6 +75,12 @@
         class="menu-link"
         >تواصل معنا</a
       >
+      <a
+        @click.prevent="$router.push('/login')"
+        class="btn btn-outline-warning"
+      >
+        تسجيل دخول
+      </a>
     </div>
 
     <!-- القسم الرئيسي -->
