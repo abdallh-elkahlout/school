@@ -16,8 +16,8 @@
             تسجيل دخول
           </a>
 
-          <a @click.prevent="scrollToSection('contact')" class="nav-link"
-            >تواصل معنا</a
+          <a @click.prevent="scrollToSection('enrollment')" class="nav-link"
+            >طلب التحاق</a
           >
           <a @click.prevent="scrollToSection('grades')" class="nav-link"
             >المراحل الدراسية</a
@@ -66,11 +66,11 @@
       >
       <a
         @click.prevent="
-          scrollToSection('contact');
+          scrollToSection('enrollment');
           toggleMenu();
         "
         class="menu-link"
-        >تواصل معنا</a
+        >طلب التحاق</a
       >
       <a
         @click.prevent="$router.push('/login')"

@@ -4,7 +4,7 @@
     <AboutSection />
     <ServicesSection />
     <GradesSection />
-    <ContactSection />
+    <enrollmentSection />
     <FooterSection />
     <button v-show="isVisible" class="back-to-top" @click="scrollToTop">
       <i class="fa-solid fa-up-long"></i>
@@ -16,7 +16,7 @@
 import HeaderSection from "@/components/HeaderSection.vue";
 import AboutSection from "@/components/AboutSection.vue";
 import ServicesSection from "@/components/ServicesSection.vue";
-import ContactSection from "@/components/ContactSection.vue";
+import enrollmentSection from "@/components/enrollmentSection.vue";
 import GradesSection from "@/components/Grades.vue";
 import FooterSection from "@/components/FooterSection.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,7 +27,7 @@ export default {
     HeaderSection,
     AboutSection,
     ServicesSection,
-    ContactSection,
+    enrollmentSection,
     GradesSection,
     FooterSection,
   },
