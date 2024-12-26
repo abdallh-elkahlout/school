@@ -1,54 +1,43 @@
 <template>
-  <section id="enrollment" class="enrollment-section">
+  <section id="contact" class="contact-section">
     <div class="container">
       <!-- العنوان الرئيسي -->
-      <h2 class="main-title">طلب <span class="gradient-text">التحاق</span></h2>
-      <div class="enrollment-wrapper">
+      <h2 class="main-title"><span class="gradient-text">تواصل</span> معنا</h2>
+      <div class="contact-wrapper">
         <!-- الصورة -->
-        <div class="enrollment-image-container">
+        <div class="contact-image-container">
           <img
-            src="@/assets/enrollment.png"
-            alt="enrollment Image"
-            class="enrollment-image"
+            src="@/assets/contact.png"
+            alt="contact Image"
+            class="contact-image"
           />
         </div>
         <!-- النموذج -->
-        <div class="enrollment-form-container">
-          <form @submit.prevent="handleSubmit" class="enrollment-form">
+        <div class="contact-form-container">
+          <form @submit.prevent="handleSubmit" class="contact-form">
             <input
               type="text"
               v-model="formData.name"
-              placeholder="الاسم الكامل"
+              placeholder="الاسم "
               required
             />
             <input
               type="email"
               v-model="formData.email"
-              placeholder="البريد الإلكتروني"
+              placeholder="الإيميل"
               required
             />
-            <input
-              type="tel"
-              v-model="formData.phoneNum"
-              placeholder="رقم الهاتف"
-              required
-            />
-            <input
-              type="date"
-              v-model="formData.birthOfDate"
-              placeholder="تاريخ الميلاد"
-              required
-            />
-            <input
+            <textarea
               type="text"
-              v-model="formData.address"
-              placeholder="العنوان"
+              v-model="formData.message"
+              placeholder="الرسالة"
               required
-            />
+            ></textarea>
+
             <button type="submit" class="submit-btn">إرسال</button>
           </form>
           <div v-if="formSubmitted" class="success-message">
-            <p>تم إرسال الطلب بنجاح! شكرًا لثقتكم بنا.</p>
+            <p>تم إرسال الرسالة بنجاح! شكرًا لثقتكم بنا.</p>
           </div>
         </div>
       </div>
@@ -63,9 +52,7 @@ export default {
       formData: {
         name: "",
         email: "",
-        phoneNum: "",
-        birthOfDate: "",
-        address: "",
+        message: "",
       },
       formSubmitted: false,
     };
@@ -77,7 +64,7 @@ export default {
         this.formSubmitted = false;
         this.formData.name = "";
         this.formData.email = "";
-        this.formData.phoneNum = "";
+        this.formData.message = "";
       }, 2000);
     },
   },
@@ -93,7 +80,7 @@ export default {
 .main-title {
   margin-bottom: 40px;
 }
-.enrollment-section {
+.contact-section {
   padding: 60px 20px;
   background-color: white;
   display: flex;
@@ -110,18 +97,18 @@ export default {
   color: #333;
 }
 
-.enrollment-wrapper {
+.contact-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 50px;
 }
 
-.enrollment-form-container {
+.contact-form-container {
   width: 60%;
   padding-right: 20px;
 }
 
-.enrollment-form {
+.contact-form {
   width: 100%;
   background-color: #ffffff;
   padding: 30px;
@@ -130,8 +117,8 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.enrollment-form input,
-.enrollment-form textarea {
+.contact-form input,
+.contact-form textarea {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
@@ -141,12 +128,15 @@ export default {
   transition: all 0.3s ease;
 }
 
-.enrollment-form input:focus,
-.enrollment-form textarea:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
   border-color: #007bff;
   outline: none;
 }
-
+input,
+textarea {
+  direction: rtl;
+}
 .submit-btn {
   width: 100%;
   padding: 12px;
@@ -178,11 +168,11 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.enrollment-image-container {
+.contact-image-container {
   width: 70%;
 }
 
-.enrollment-image {
+.contact-image {
   width: 100%;
   height: auto;
 }
@@ -193,18 +183,18 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .enrollment-wrapper {
+  .contact-wrapper {
     flex-direction: column;
     align-items: center;
   }
 
-  .enrollment-form-container,
-  .enrollment-image-container {
+  .contact-form-container,
+  .contact-image-container {
     width: 100%;
     padding: 10px 0;
   }
 
-  .enrollment-image {
+  .contact-image {
     max-width: 100%;
   }
 }

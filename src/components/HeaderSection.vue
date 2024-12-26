@@ -7,7 +7,6 @@
           <span></span>
           <span></span>
         </button>
-
         <div class="list" v-if="!isSmallScreen">
           <a
             @click.prevent="$router.push('/login')"
@@ -16,8 +15,8 @@
             تسجيل دخول
           </a>
 
-          <a @click.prevent="scrollToSection('enrollment')" class="nav-link"
-            >طلب التحاق</a
+          <a @click.prevent="scrollToSection('contact')" class="nav-link"
+            >تواصل معنا</a
           >
           <a @click.prevent="scrollToSection('grades')" class="nav-link"
             >المراحل الدراسية</a
@@ -66,11 +65,11 @@
       >
       <a
         @click.prevent="
-          scrollToSection('enrollment');
+          scrollToSection('contact');
           toggleMenu();
         "
         class="menu-link"
-        >طلب التحاق</a
+        >تواصل معنا</a
       >
       <a
         @click.prevent="$router.push('/login')"
@@ -85,11 +84,109 @@
       <div class="content">
         <h1 class="headline">مرحبًا بكم في مدرسة المستقبل</h1>
         <p class="subheadline">نوفر بيئة تعليمية شاملة لجميع المراحل</p>
-        <a @click.prevent="scrollToSection('services')" class="cta-button"
-          >اكتشف المزيد</a
+        <a
+          class="enrollment-button"
+          data-bs-toggle="modal"
+          data-bs-target="#enroll"
+          >طلب التحاق</a
         >
       </div>
     </section>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="enroll"
+    tabindex="-1"
+    aria-labelledby="enrollLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="enrollLabel">طلب التحاق</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="lead mb-3">
+            يمكنك تقديم طلب التحاق من خلال إدخال البيانات:
+          </p>
+          <form>
+            <div class="mb-3">
+              <label for="name" class="col-form-label"> الاسم الكامل: </label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                v-model="enrollmentData.name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="dob" class="col-form-label"> تاريخ الميلاد: </label>
+              <input
+                type="date"
+                class="form-control"
+                id="dob"
+                v-model="enrollmentData.dob"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="col-form-label">الإيميل:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                v-model="enrollmentData.email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="col-form-label">رقم الهاتف:</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="phone"
+                v-model="enrollmentData.phone"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="address" class="col-form-label">العنوان:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                v-model="enrollmentData.address"
+                required
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            @click.prevent="handleSubmit()"
+            type="submit"
+            class="btn submit"
+          >
+            إرسال الطلب
+          </button>
+        </div>
+      </div>
+      <div v-if="Submitted" class="success-message">
+        <p>تم إرسال الطلب بنجاح! شكرًا لثقتكم بنا.</p>
+      </div>
+      <div v-if="!Submitted && Incomplete" class="error-message">
+        <p>يرجى ملء جميع الحقول المطلوبة .</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,6 +196,15 @@ export default {
     return {
       isMenuOpen: false,
       isSmallScreen: window.innerWidth <= 480,
+      enrollmentData: {
+        name: "",
+        dob: "",
+        email: "",
+        phone: "",
+        address: "",
+      },
+      Submitted: false,
+      Incomplete: false,
     };
   },
   mounted() {
@@ -122,6 +228,30 @@ export default {
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    handleSubmit() {
+      if (
+        this.enrollmentData.name &&
+        this.enrollmentData.dob &&
+        this.enrollmentData.email &&
+        this.enrollmentData.phone &&
+        this.enrollmentData.address
+      ) {
+        this.Submitted = true;
+        setTimeout(() => {
+          this.Submitted = false;
+          this.enrollmentData.name = "";
+          this.enrollmentData.dob = "";
+          this.enrollmentData.email = "";
+          this.enrollmentData.phone = "";
+          this.enrollmentData.address = "";
+        }, 2000);
+      } else {
+        this.Incomplete = true;
+        setTimeout(() => {
+          this.Incomplete = false;
+        }, 2000);
+      }
     },
   },
 };
@@ -270,13 +400,13 @@ body {
 .subheadline {
   font-size: 1.2rem;
   color: #e0e0e0;
-  margin-top: 15px;
+  margin: 15px;
 }
 
-.cta-button {
+.enrollment-button {
   display: inline-block;
   padding: 15px 30px;
-  margin-top: 30px;
+  margin: 5px 0;
   background-color: #ffdd57;
   color: #333;
   font-weight: bold;
@@ -288,9 +418,60 @@ body {
   position: relative;
 }
 
-.cta-button:hover {
+.enrollment-button:hover {
   background-color: #ff9f00;
   transform: translateY(-5px);
+}
+
+.modal {
+  direction: rtl;
+}
+.btn-close {
+  position: absolute;
+  left: 10px;
+}
+.modal-header {
+  background: linear-gradient(135deg, #7a7cfa, #3a4e9b);
+  color: white;
+}
+.modal-footer {
+  display: flex;
+  justify-content: center;
+}
+.submit {
+  padding: 5px 50px;
+  transition: 0.7s;
+  background-color: #ffc107;
+}
+.submit:hover {
+  padding: 5px 100px;
+  transition: 0.7s;
+  background-color: #ff9f00;
+}
+
+.success-message {
+  position: relative;
+  top: -25px;
+  width: 100%;
+  text-align: center;
+  background-color: #28a745;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.error-message {
+  position: relative;
+  top: -25px;
+  width: 100%;
+  text-align: center;
+  background-color: #fa6161;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 705px) {
