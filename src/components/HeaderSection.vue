@@ -88,7 +88,7 @@
           class="enrollment-button"
           data-bs-toggle="modal"
           data-bs-target="#enroll"
-          >طلب التحاق</a
+          >تقديم طلب التحاق</a
         >
       </div>
     </section>
@@ -474,6 +474,10 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.modal{
+  position: fixed;
+  margin: auto;
+}
 @media (max-width: 705px) {
   .list {
     display: none;
