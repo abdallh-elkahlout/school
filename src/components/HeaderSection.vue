@@ -456,7 +456,14 @@ body {
   justify-content: center;
 }
 .form-control {
-  margin-top: 5px;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 10px;
+  border: var(--bs-border-width) solid #c9c5cd;
 }
 .success-message {
   position: fixed;
