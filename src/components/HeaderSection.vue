@@ -455,7 +455,9 @@ body {
   display: flex;
   justify-content: center;
 }
-
+.form-control {
+  margin-top: 5px;
+}
 .success-message {
   position: fixed;
   top: 20px;
