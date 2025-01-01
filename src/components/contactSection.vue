@@ -37,7 +37,7 @@
             <button type="submit" class="submit-btn">إرسال</button>
           </form>
           <div v-if="formSubmitted" class="success-message">
-            <p>تم إرسال الرسالة بنجاح! شكرًا لثقتكم بنا.</p>
+            <p>تم إرسال الرسالة بنجاح! شكرًا لتواصلكم معنا.</p>
           </div>
         </div>
       </div>

@@ -84,112 +84,86 @@
       <div class="content">
         <h1 class="headline">مرحبًا بكم في مدرسة المستقبل</h1>
         <p class="subheadline">نوفر بيئة تعليمية شاملة لجميع المراحل</p>
-        <a
-          class="enrollment-button"
-          data-bs-toggle="modal"
-          data-bs-target="#enroll"
-          >تقديم طلب التحاق</a
-        >
+        <a class="enrollment-button" @click="openModal">تقديم طلب التحاق</a>
       </div>
     </section>
   </div>
 
   <!-- Modal -->
-  <div
-    class="modal fade"
-    id="enroll"
-    tabindex="-1"
-    aria-labelledby="enrollLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="enrollLabel">طلب التحاق</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <p class="lead mb-3">
-            يمكنك تقديم طلب التحاق من خلال إدخال البيانات:
-          </p>
-          <form>
-            <div class="mb-3">
-              <label for="name" class="col-form-label"> الاسم الكامل: </label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                v-model="enrollmentData.name"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="dob" class="col-form-label"> تاريخ الميلاد: </label>
-              <input
-                type="date"
-                class="form-control"
-                id="dob"
-                v-model="enrollmentData.dob"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="col-form-label">الإيميل:</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                v-model="enrollmentData.email"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="phone" class="col-form-label">رقم الهاتف:</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="phone"
-                v-model="enrollmentData.phone"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="address" class="col-form-label">العنوان:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="address"
-                v-model="enrollmentData.address"
-                required
-              />
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            @click.prevent="handleSubmit()"
-            type="submit"
-            class="btn submit"
-          >
-            إرسال الطلب
-          </button>
-        </div>
+  <div v-if="isModalOpen" class="modal-overlay" @click="closeModal">
+    <div class="modal-content" @click.stop>
+      <div class="modal-header">
+        <h5 class="modal-title">طلب التحاق</h5>
+        <button @click="closeModal" class="btn-close" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
-      <div v-if="Submitted" class="success-message">
-        <p>تم إرسال الطلب بنجاح! شكرًا لثقتكم بنا.</p>
+      <div class="modal-body">
+        <p class="lead mb-3">يمكنك تقديم طلب التحاق من خلال إدخال البيانات:</p>
+        <form @submit.prevent="handleSubmit">
+          <div class="mb-3">
+            <label for="name" class="col-form-label"> الاسم الكامل: </label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              v-model="enrollmentData.name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="dob" class="col-form-label"> تاريخ الميلاد: </label>
+            <input
+              type="date"
+              class="form-control"
+              id="dob"
+              v-model="enrollmentData.dob"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">الإيميل:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              v-model="enrollmentData.email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="col-form-label">رقم الهاتف:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="phone"
+              v-model="enrollmentData.phone"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="col-form-label">العنوان:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              v-model="enrollmentData.address"
+              required
+            />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn submit">إرسال الطلب</button>
+          </div>
+        </form>
       </div>
-      <div v-if="!Submitted && Incomplete" class="error-message">
-        <p>يرجى ملء جميع الحقول المطلوبة .</p>
-      </div>
+    </div>
+
+    <!-- الرسائل بعد الإرسال -->
+    <div v-if="Submitted" class="success-message">
+      <p>تم إرسال الطلب بنجاح! شكرًا لثقتكم بنا.</p>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -205,6 +179,7 @@ export default {
       },
       Submitted: false,
       Incomplete: false,
+      isModalOpen: false, // متغير لتحديد حالة المودال
     };
   },
   mounted() {
@@ -229,6 +204,12 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    openModal() {
+      this.isModalOpen = true;
+    },
+    closeModal() {
+      this.isModalOpen = false;
+    },
     handleSubmit() {
       if (
         this.enrollmentData.name &&
@@ -245,6 +226,7 @@ export default {
           this.enrollmentData.email = "";
           this.enrollmentData.phone = "";
           this.enrollmentData.address = "";
+          this.closeModal(); // إغلاق المودال بعد الإرسال
         }, 2000);
       } else {
         this.Incomplete = true;
@@ -422,62 +404,85 @@ body {
   background-color: #ff9f00;
   transform: translateY(-5px);
 }
-
-.modal {
+.modal-overlay {
   direction: rtl;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
-.btn-close {
-  position: absolute;
-  left: 10px;
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(135deg, #7a7cfa, #3a4e9b);
   color: white;
+  padding: 10px;
 }
+
+.btn-close {
+  transition: 0.3s;
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+  bottom: 4px;
+}
+
+.modal-body {
+  padding: 15px;
+}
+
 .modal-footer {
   display: flex;
   justify-content: center;
 }
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.success-message {
+  background-color: #28a745;
+}
+
 .submit {
   padding: 5px 50px;
   transition: 0.7s;
   background-color: #ffc107;
 }
+
 .submit:hover {
   padding: 5px 100px;
-  transition: 0.7s;
   background-color: #ff9f00;
 }
 
-.success-message {
-  position: relative;
-  top: -25px;
-  width: 100%;
-  text-align: center;
-  background-color: #28a745;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.error-message {
-  position: relative;
-  top: -25px;
-  width: 100%;
-  text-align: center;
-  background-color: #fa6161;
-  padding: 10px;
-  border-radius: 5px;
-  color: white;
-  font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.modal{
-  position: fixed;
-  margin: auto;
-}
 @media (max-width: 705px) {
   .list {
     display: none;
