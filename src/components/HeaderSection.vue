@@ -475,9 +475,6 @@ body {
   color: white;
   font-size: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.success-message {
   background-color: #28a745;
 }
 
