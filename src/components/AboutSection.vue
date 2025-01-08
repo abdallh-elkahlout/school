@@ -9,15 +9,33 @@
         </p>
       </div>
       <div class="image-container" data-aos="fade-left ">
-        <img src="@/assets/about.jpg" alt="عن المدرسة" />
+        <img src="/img/about.jpg" alt="عن المدرسة" />
       </div>
     </div>
   </section>
 </template>
 
 <script>
+//import axios from "axios";
 export default {
   name: "AboutSection",
+  methods() {
+    // async fetchAbout() {
+    //   try {
+    //     const response = await axios.get("http://127.0.0.1:8000/api/about-us/1", {
+    //       headers: {
+    //         Accept: "application/json",
+    //       },
+    //     });
+    //     this.grades = response.data.data;
+    //   } catch (error) {
+    //     console.error("خطأ أثناء جلب البيانات من API:", error);
+    //   }
+    // },
+  },
+  mounted() {
+    // this.fetchAbout();
+  },
 };
 </script>
 

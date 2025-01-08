@@ -7,7 +7,7 @@
         <!-- الصورة -->
         <div class="contact-image-container">
           <img
-            src="@/assets/contact.png"
+            src="/img/contact.png"
             alt="contact Image"
             class="contact-image"
           />

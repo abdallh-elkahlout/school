@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "GradesSection",
   data() {
@@ -55,6 +56,24 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    // API
+    async fetchGrades() {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/crades", {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        this.grades = response.data.data;
+      } catch (error) {
+        console.error("خطأ أثناء جلب البيانات من API:", error);
+      }
+    },
+  },
+  mounted() {
+    //this.fetchGrades();
   },
 };
 </script>

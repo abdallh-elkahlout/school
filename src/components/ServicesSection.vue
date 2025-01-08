@@ -73,42 +73,42 @@ export default {
         {
           title: "مختبرات علمية",
           description: "مختبرات مجهزة بالكامل لتعزيز التعلم العملي.",
-          image: require("@/assets/laboratory.jpg"),
+          image: "/img/laboratory.jpg",
         },
         {
           title: "مكتبة متكاملة",
           description: "مصادر تعليمية متنوعة لدعم البحث والتعلم الذاتي.",
-          image: require("@/assets/library.jpg"),
+          image: "/img/library.jpg",
         },
         {
           title: "أنشطة رياضية",
           description: "برامج رياضية لتنمية المهارات البدنية والروح الرياضية.",
-          image: require("@/assets/sports.jpg"),
+          image: "/img/sports.jpg",
         },
         {
           title: "أنشطة فنية",
           description: "فرص إبداعية في الرسم والموسيقى والتصميم.",
-          image: require("@/assets/art.jpg"),
+          image: "/img/art.jpg",
         },
         {
           title: "منصات التعليم الذكي",
           description: "إنشاء منصات تفاعلية تقدم موارد تعليمية عبر الإنترنت.",
-          image: require("@/assets/sep.jpg"),
+          image: "/img/sep.jpg",
         },
         {
           title: "ورش العمل المهنية",
           description: "تعليم الطلاب مهارات العمل.",
-          image: require("@/assets/pw.jpg"),
+          image: "/img/pw.jpg",
         },
         {
           title: "الأنشطة الطلابية",
           description: "نوادي ثقافية وفنية مثل نادي القراءة، نادي الكتابة.",
-          image: require("@/assets/sa.jpg"),
+          image: "/img/sa.jpg",
         },
         {
           title: "مقصف صحي ومتوان",
           description: "توفير وجبات غذائية صحية ومتوازنة للطلاب",
-          image: require("@/assets/canteen.jpg"),
+          image: "/img/canteen.jpg",
         },
       ],
     };
@@ -123,16 +123,29 @@ export default {
       return result;
     },
   },
-  mounted() {
-    window.addEventListener("resize", this.handleResize);
-  },
   unmounted() {
     window.removeEventListener("resize", this.handleResize);
   },
   methods: {
     handleResize() {
-      this.windowWidth = window.innerWidth; // تحديث عرض النافذة
+      this.windowWidth = window.innerWidth;
     },
+    // async fetchServices() {
+    //   try {
+    //     const response = await axios.get("http://127.0.0.1:8000/api/services", {
+    //       headers: {
+    //         Accept: "application/json",
+    //       },
+    //     });
+    //     this.grades = response.data.data;
+    //   } catch (error) {
+    //     console.error("خطأ أثناء جلب البيانات من API:", error);
+    //   }
+    // },
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
+    // this.fetchServices();
   },
 };
 </script>

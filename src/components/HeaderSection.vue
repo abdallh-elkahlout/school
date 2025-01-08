@@ -14,7 +14,6 @@
           >
             تسجيل دخول
           </a>
-
           <a @click.prevent="scrollToSection('contact')" class="nav-link"
             >تواصل معنا</a
           >
@@ -31,13 +30,11 @@
             >الرئيسية</a
           >
         </div>
-
         <div class="icon">
           <a @click.prevent="scrollToSection('home')" class="logo">المستقبل</a>
         </div>
       </div>
     </header>
-
     <div class="side-menu" :class="{ open: isMenuOpen }">
       <a
         @click.prevent="
@@ -165,6 +162,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -179,7 +177,8 @@ export default {
       },
       Submitted: false,
       Incomplete: false,
-      isModalOpen: false, // متغير لتحديد حالة المودال
+      isModalOpen: false,
+      isScrolled: false,
     };
   },
   mounted() {
@@ -226,13 +225,35 @@ export default {
           this.enrollmentData.email = "";
           this.enrollmentData.phone = "";
           this.enrollmentData.address = "";
-          this.closeModal(); // إغلاق المودال بعد الإرسال
+          this.closeModal();
         }, 2000);
       } else {
         this.Incomplete = true;
         setTimeout(() => {
           this.Incomplete = false;
         }, 2000);
+      }
+    },
+    async submitData() {
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8000/api/request-joind",
+          {
+            name: "api test1",
+            email: "apitest1@gmail.com",
+            phone: "0599999999",
+            date_birth: "1/1/1111",
+            address: "aaaaaaaa",
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log("البيانات تم إرسالها بنجاح:", response.data);
+      } catch (error) {
+        console.error("خطأ في إرسال البيانات:", error);
       }
     },
   },
