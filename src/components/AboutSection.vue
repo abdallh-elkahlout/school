@@ -2,13 +2,10 @@
   <section class="about" id="about" data-aos="fade-up">
     <div class="container d-flex flex-wrap">
       <div class="text-container" data-aos="fade-right">
-        <h2>عن المدرسة</h2>
-        <p>
-          مدرسة المستقبل الشاملة هي مؤسسة تعليمية رائدة تهدف إلى بناء جيل مبدع
-          ومتميز من خلال برامج تعليمية متكاملة ومرافق حديثة.
-        </p>
+        <h2>{{ about.title }}</h2>
+        <p>{{ about.description }}</p>
       </div>
-      <div class="image-container" data-aos="fade-left ">
+      <div class="image-container" data-aos="fade-left">
         <img src="/img/about.jpg" alt="عن المدرسة" />
       </div>
     </div>
@@ -16,10 +13,20 @@
 </template>
 
 <script>
-//import axios from "axios";
+// import axios from "axios";
 export default {
   name: "AboutSection",
-  methods() {
+  data() {
+    return {
+      about: {
+        title: "عن المدرسة",
+        description:
+          "مدرسة المستقبل الشاملة هي مؤسسة تعليمية رائدة تهدف الى بناء جيل مبدع ومتميز من خلال برامج تعليمية متكاملة ومرافق حديثة",
+        image: "",
+      },
+    };
+  },
+  methods: {
     // async fetchAbout() {
     //   try {
     //     const response = await axios.get("http://127.0.0.1:8000/api/about-us/1", {
@@ -27,7 +34,7 @@ export default {
     //         Accept: "application/json",
     //       },
     //     });
-    //     this.grades = response.data.data;
+    //     this.about = response.data.data;
     //   } catch (error) {
     //     console.error("خطأ أثناء جلب البيانات من API:", error);
     //   }
@@ -74,6 +81,7 @@ export default {
   line-height: 1.8;
   color: #39424e;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .image-container {

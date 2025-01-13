@@ -39,8 +39,6 @@
           </div>
         </div>
       </div>
-
-      <!-- أزرار تحريك البطاقات -->
       <div class="d-flex justify-content-center mt-4">
         <button
           class="btn btn-primary mx-2"
@@ -64,6 +62,8 @@
 </template>
 
 <script>
+// import axios from "axios"; // تم تعليق استيراد axios لعدم استخدام API حالياً
+
 export default {
   name: "ServicesSlider",
   data() {
@@ -130,6 +130,7 @@ export default {
     handleResize() {
       this.windowWidth = window.innerWidth;
     },
+    // API
     // async fetchServices() {
     //   try {
     //     const response = await axios.get("http://127.0.0.1:8000/api/services", {
@@ -137,15 +138,15 @@ export default {
     //         Accept: "application/json",
     //       },
     //     });
-    //     this.grades = response.data.data;
+    //     this.services = response.data.data; // تعبئة services بالبيانات من API
     //   } catch (error) {
     //     console.error("خطأ أثناء جلب البيانات من API:", error);
     //   }
-    // },
+    // }, // تم تعليق دالة fetchServices لعدم استخدام API حالياً
   },
   mounted() {
     window.addEventListener("resize", this.handleResize);
-    // this.fetchServices();
+    // this.fetchServices(); // تم تعليق استدعاء fetchServices لعدم استخدام API حالياً
   },
 };
 </script>

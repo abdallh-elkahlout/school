@@ -162,7 +162,8 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+// import axios from "axios"; // تم تعليق استيراد axios لعدم استخدام API حالياً
+
 export default {
   data() {
     return {
@@ -217,6 +218,7 @@ export default {
         this.enrollmentData.phone &&
         this.enrollmentData.address
       ) {
+        // this.submitData(); // تم تعليق استدعاء API لعدم استخدامه حالياً
         this.Submitted = true;
         setTimeout(() => {
           this.Submitted = false;
@@ -234,28 +236,29 @@ export default {
         }, 2000);
       }
     },
-    async submitData() {
-      try {
-        const response = await axios.post(
-          "http://127.0.0.1:8000/api/request-joind",
-          {
-            name: "api test1",
-            email: "apitest1@gmail.com",
-            phone: "0599999999",
-            date_birth: "1/1/1111",
-            address: "aaaaaaaa",
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        console.log("البيانات تم إرسالها بنجاح:", response.data);
-      } catch (error) {
-        console.error("خطأ في إرسال البيانات:", error);
-      }
-    },
+    // API
+    // async submitData() {
+    //   try {
+    //     const response = await axios.post(
+    //       "http://127.0.0.1:8000/api/request-joind", // رابط API
+    //       {
+    //         name: this.enrollmentData.name,
+    //         email: this.enrollmentData.email,
+    //         phone: this.enrollmentData.phone,
+    //         date_birth: this.enrollmentData.dob,
+    //         address: this.enrollmentData.address,
+    //       },
+    //       {
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //       }
+    //     );
+    //     console.log("البيانات تم إرسالها بنجاح:", response.data);
+    //   } catch (error) {
+    //     console.error("خطأ في إرسال البيانات:", error);
+    //   }
+    // }, // تم تعليق دالة submitData لعدم استخدام API حالياً
   },
 };
 </script>

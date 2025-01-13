@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios"; // تم تعليق استيراد axios لعدم استخدام API حالياً
+
 export default {
   name: "GradesSection",
   data() {
@@ -31,49 +32,44 @@ export default {
         {
           name: "الصف الأول",
           description: "مقدمة لتعليم الأطفال الأساسيات في جميع المواد.",
-          link: "/grade-1",
         },
         {
           name: "الصف الثاني",
           description: "توسيع المعارف في الرياضيات، العلوم، واللغة العربية.",
-          link: "/grade-2",
         },
         {
           name: "الصف الثالث",
           description: "استكشاف موضوعات جديدة مع تحسين المهارات الأساسية.",
-          link: "/grade-3",
         },
         {
           name: "الصف الرابع",
           description:
             "التركيز على تطوير مهارات التفكير النقدي والتفاعل الاجتماعي.",
-          link: "/grade-4",
         },
         {
           name: "الصف الخامس",
           description: "إعداد الطلاب لمراحل دراسية أكثر تحدياً.",
-          link: "/grade-5",
         },
       ],
     };
   },
   methods: {
     // API
-    async fetchGrades() {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api/crades", {
-          headers: {
-            Accept: "application/json",
-          },
-        });
-        this.grades = response.data.data;
-      } catch (error) {
-        console.error("خطأ أثناء جلب البيانات من API:", error);
-      }
-    },
+    // async fetchGrades() {
+    //   try {
+    //     const response = await axios.get("http://127.0.0.1:8000/api/crades", {
+    //       headers: {
+    //         Accept: "application/json",
+    //       },
+    //     });
+    //     this.grades = response.data.data;
+    //   } catch (error) {
+    //     console.error("خطأ أثناء جلب البيانات من API:", error);
+    //   }
+    // }, // تم تعليق دالة fetchGrades لعدم استخدام API حالياً
   },
   mounted() {
-    //this.fetchGrades();
+    // this.fetchGrades(); // تم تعليق استدعاء fetchGrades لعدم استخدام API حالياً
   },
 };
 </script>

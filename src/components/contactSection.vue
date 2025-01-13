@@ -1,10 +1,8 @@
 <template>
   <section id="contact" class="contact-section">
     <div class="container">
-      <!-- العنوان الرئيسي -->
       <h2 class="main-title"><span class="gradient-text">تواصل</span> معنا</h2>
       <div class="contact-wrapper">
-        <!-- الصورة -->
         <div class="contact-image-container">
           <img
             src="/img/contact.png"
@@ -12,26 +10,28 @@
             class="contact-image"
           />
         </div>
-        <!-- النموذج -->
         <div class="contact-form-container">
-          <form @submit.prevent="handleSubmit" class="contact-form">
+          <form @submit.prevent="handleSubmit" class="contact-form" ref="form">
             <input
               type="text"
               v-model="formData.name"
               placeholder="الاسم "
               required
+              name="name"
             />
             <input
               type="email"
               v-model="formData.email"
               placeholder="الإيميل"
               required
+              name="email"
             />
             <textarea
               type="text"
               v-model="formData.message"
               placeholder="الرسالة"
               required
+              name="message"
             ></textarea>
 
             <button type="submit" class="submit-btn">إرسال</button>
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import emailjs from "emailjs-com";
+
 export default {
   data() {
     return {
@@ -59,18 +61,33 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.formSubmitted = true;
-      setTimeout(() => {
-        this.formSubmitted = false;
-        this.formData.name = "";
-        this.formData.email = "";
-        this.formData.message = "";
-      }, 2000);
+      emailjs
+        .sendForm(
+          "service_qu6z5m2", // Service ID
+          "template_508aj7c", // Template ID
+          this.$refs.form,
+          "H1_gA_3OtuqmGLJO-" // Public API Key
+        )
+        .then(
+          (response) => {
+            console.log("SUCCESS!", response.status, response.text);
+            this.formSubmitted = true;
+            setTimeout(() => {
+              this.formSubmitted = false;
+              this.formData.name = "";
+              this.formData.email = "";
+              this.formData.message = "";
+            }, 2000);
+          },
+          (error) => {
+            console.log("FAILED...", error);
+            alert("حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.");
+          }
+        );
     },
   },
 };
 </script>
-
 <style scoped>
 * {
   margin: 0;
@@ -88,7 +105,6 @@ export default {
   align-items: center;
 }
 
-/* العنوان الرئيسي */
 .section-title {
   text-align: center;
   font-size: 2.5rem;
